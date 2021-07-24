@@ -1,0 +1,101 @@
+
+  * 처음에 MonoBehaviour안에 GameObject들 세팅
+
+------------------------------------------------------------------------------------
+
+  ** Update 안의 Raycast(탐색 가능한 범위 지정과 같다)에 따라 TrackableHitFlags 안의 
+   PlaneWithinPolygon과 FeaturePointWithSurfaceNormal을 지정해준다.
+ 
+TrackableHit hit;
+TrackableHitFlags raycastFilter = TrackableHitFlags.PlaneWithinPolygon |
+           TrackableHitFlags.FeaturePointWithSurfaceNormal;
+
+
+ ** 위에서 raycastFilter로 지정해준 값들에 대해 touch로 조작해준다.
+  * 아래 코드는 평면 뒤에서 터치하는 경우는 적용하지 않는 것을 의미한다.
+ if (Frame.Raycast(touch.position.x, touch.position.y, raycastFilter, out hit))
+            {
+                if ((hit.Trackable is DetectedPlane) &&
+                    Vector3.Dot(FirstPersonCamera.transform.position - hit.Pose.position,
+                        hit.Pose.rotation * Vector3.up) < 0)
+                {
+                    Debug.Log("Hit at back of the current DetectedPlane");
+                }
+
+ ** hit.trackable의 상태에 따라서(horizontal, vertical)에 따라 다른 prefab을 적용한다.
+     그냥 FeaturePoint이냐, 
+GameObject prefab;
+                    if (hit.Trackable is FeaturePoint)
+                    {
+                        prefab = GameObjectPointPrefab;
+                    }
+                    else if (hit.Trackable is DetectedPlane)
+                    {
+                        DetectedPlane detectedPlane = hit.Trackable as DetectedPlane;
+                        if (detectedPlane.PlaneType == DetectedPlaneType.Vertical)
+                        {
+                            prefab = GameObjectVerticalPlanePrefab;
+                        }
+                        else
+                        {
+                            prefab = GameObjectHorizontalPlanePrefab;
+                        }
+                    }
+                    else
+                    {
+                        prefab = GameObjectHorizontalPlanePrefab;
+                    }
+
+ ** 터치시 위의 과정을 거치고 해당 위치에 오브젝트를 생성해준다.
+  * hit이 발생한 곳에 게임 오브젝트를 생성한다. hit은 Pose로부터 위치와 방향을 받아
+    오브젝트를 생성하게 된다. (면의 모양에 따라 다양한 방향을 생성된다)
+ * 추가로 오브젝트를 회전시키는데 이는 카메라 위지에 따른 것이다!
+
+ var gameObject = Instantiate(prefab, hit.Pose.position, hit.Pose.rotation);
+ gameObject.transform.Rotate(0,k_PrefabRotation,0,Space.Self);
+
+
+ ** hit가 발생한 곳은 anchor를 만들어 트랙킹한다(매우 중요해 보인다)
+
+ var anchor = hit.Trackable.CreateAnchor(hit.Pose);
+
+------------------------------------------------------------------------------------
+
+ * 그냥 KeyCode에 따라 탈출 인수
+
+if (Input.GetKey(KeyCode.Escape))
+            {
+                Application.Quit();
+            }
+
+
+ * 화면 꺼짐과 관련해 tracking여부에 따라 sleep 여부 결정
+
+if (Session.Status != SessionStatus.Tracking)
+            {
+                Screen.sleepTimeout = SleepTimeout.SystemSetting;
+            }
+            else
+            {
+                Screen.sleepTimeout = SleepTimeout.NeverSleep;
+            }
+
+------------------------------------------------------------------------------------
+
+ * AR 사용시에 카메라 관련 승인 안내문
+
+if (Session.Status == SessionStatus.ErrorPermissionNotGranted)
+            {
+                _ShowAndroidToastMessage("Camera permission is needed to run this application.");
+                m_IsQuitting = true;
+                Invoke("_DoQuit", 0.5f);
+            }
+else if (Session.Status.IsError())
+            {
+                _ShowAndroidToastMessage(
+                    "ARCore encountered a problem connecting.  Please start the app again.");
+                m_IsQuitting = true;
+                Invoke("_DoQuit", 0.5f);
+            }
+
+------------------------------------------------------------------------------------

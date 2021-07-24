@@ -1,0 +1,38 @@
+
+ 플레이 월드 / 인벤토리 / 퀘스트
+
+-----------------------------------------
+ < 현재 월드 상태 (AR 반영) >
+ class status
+	int light		// 낮과 밤 표현
+	int 
+	int 
+
+
+ < 플레이 월드 >
+ class world
+	int w_num;	// 각 섹션 숫자 1000자리 + 개별 번호 그 이하, 섹션은 
+	int x		
+	int y
+	
+	
+
+ < 캐릭터 >
+ class character
+	string name	// 게임 내 캐릭터 이름
+	int hp		// 게임 내 체력
+	int		// 게임 내 		
+
+
+ < 인벤토리 >	현재 수입한 아이템들이 
+ class inven
+	int type		// type=0 기본 아이템 / type=1 색상 / type=2 특수색상
+	int i_num		// 각 아이템의 고유 번호
+
+ < 퀘스트 >
+class quest
+	int q_num;	// 퀘스트 번호와 
+	int q_chk;		// 퀘스트 완료 여부
+	int q_stat;		// 퀘스트 진행 정도
+	
+ 

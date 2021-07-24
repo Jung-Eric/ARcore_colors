@@ -1,0 +1,74 @@
+
+ * 버튼을 기반으로 스크린샷을 찍고 그 중의 픽셀값을 잘라낼 수 있다.
+
+------------------------
+ public class ScreenShot : MonoBehaviour {
+	public EP_DrawPadRT DrawPad;	//draw pad이미지를 저장해두는 역할 (buffer??)
+	Texture2D screenshot, resizeTexture;
+	public GameObject GO_Dim;
+
+	public Button Btn_Capture;
+	public GameObject
+
+	if (Btn_Capture)
+		{Btn_Capture.onClick.AddListener(TakeScreenshot)}:
+	
+	DrawMat = DrawPad.GetComponent<Renderer>().material;	//
+
+----
+ ** 
+
+	Texture2D toTexture2D (RenderTexture rTex) {
+		Texture2D tex = new Texture2D (resWidth, resHeight, TextureFormat.RGBA32, false);
+		RenderTexture.active = rTex;
+		tex.ReadPixels (new Rect (0, 0, rTex.width, rTex.height), 0, 0);
+		return tex;
+	}
+
+---
+
+ ** public void TakeScreenshot 은 위의 Start에도 있는 함수이다.
+
+	public void TakeScreenshot () {
+		startX = Screen.width;
+		startY = 0;
+		endX = 0;
+		endY = Screen.height;
+		resWidth = Screen.width;
+		resHeight = Screen.height;
+
+		screenshot = toTexture2D (DrawMat.mainTexture as RenderTexture);
+---
+	screenshot.GetPixel 사용법 (추가 공부)
+
+	Color _color = screenshot.GetPixel(x,y).a 으로 불러올 수 있다.
+	>> x,y 지점의 값에서 해당 픽셀의 색상 값으로 RGBA순으로 가져온다.
+	     r,g,b,a를 인자로서 가져올 수 있다. 0~1사이의 값이 들어간다.
+	     r은 [0] / g는 [1] / b는 [2] / a는 [3] 에 저장된다.
+
+---
+
+ 일단 사용할 색 6개 (250으로 나누는게 좋아보인다!)
+
+ - 밝은 빨강 	250,0,0		(1,0,0)
+ - 밝은 초록 	15,240,15		(0.06,0.96,0.06)
+ - 적당 파랑	0,130,250		(0,0.52,1)
+	
+ - 연주황		250,220,30	(1,0.88,0.12)
+ - 청록		30,220,220	(0.12,0.88,0.88)
+ - 밝은보라	230,30,200	(0.92,0.12,0.8)
+
+ 연산할 때에는 250을 곱해서 쓰자
+ 기본적으로 A는 1이 된다(불투명으로 쓸 거기 때문)
+
+
+
+
+
+ 
+
+ 
+
+
+
+

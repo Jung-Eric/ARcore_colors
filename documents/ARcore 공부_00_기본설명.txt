@@ -1,0 +1,5 @@
+ARcore 코드, 스크립트 공부
+
+* HelloAR Controller : 컨트롤러로서 기본적 수행 기능 탑재
+
+* PlaneDiscovery : 물체를 둘 수 있는 평면 탐색

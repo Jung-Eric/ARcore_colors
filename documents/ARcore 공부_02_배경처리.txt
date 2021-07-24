@@ -1,0 +1,30 @@
+* AR을 위해 카메라에서 사용할 세션을 재정의한다.
+   AR core device를 조정한다.
+* AR을 위해 배경을 재정의한다.
+----------------------------------------------------------------------------
+
+ << Session에 대해 >>
+
+** 우선 Awake 사용 시 작업을 위한 LifecycleManager의 세션을 생성한다.
+    추가로 빛이 부족하면 경고문을 띄워준다.
+public virtual void Awake()
+        {
+            if (SessionConfig != null &&
+                SessionConfig.LightEstimationMode != LightEstimationMode.Disabled &&
+                Object.FindObjectsOfType<EnvironmentalLight>().Length == 0)
+            {
+                Debug.Log("Light Estimation may not work properly when EnvironmentalLight is not" +
+                    " attached to the scene.");
+            }
+
+            LifecycleManager.Instance.CreateSession(this);
+        }
+
+** OnValidate() 함수를 통해 경우들에 따른 로그를 활용한다.
+
+----------------------------------------------------------------------------
+
+ << Background에 대해 >>
+
+** AR Background를 제공받아 카메라와 함께 화면을 구성한다
+** 여기 내용은 사실 건드릴게 별로 없다. 그대로 사용해도 충분히 기능을 사용 가능하다.

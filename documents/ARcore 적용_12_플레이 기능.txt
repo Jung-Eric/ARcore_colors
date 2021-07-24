@@ -1,0 +1,155 @@
+편의 기능
+-----------------
+
+ - 월드 확대/축소 효과 (완료)
+
+ - 월드 회전 효과 (완료)
+
+ - 월드 앵커 효과 
+	(숨겨져 있는 아이템이나 퍼즐을 찾을 수 있게)
+	(그냥 특정 지점으로 월드를 옮기면 된다)
+
+ - 더블 클릭하면 원래 위치로 돌아오기
+
+ - 일반 모드하고 AR모드를 왔다 갔다 할 수 있게
+
+---------------
+
+ [ 월드 축소 ver1 ] - 효과 없음으로 밝혀짐
+
+ using UnityEngine;
+
+ public class PinchZoom : MonoBehaviour
+{
+ public float perspectiveZoomSpeed = 0,5f;
+ public float orthoZoomSpeed = 0.5f;
+
+ void Update()
+ {//손가락 두 개의 터치를 인식해야 된다.
+ if (Input.touchCount == 2)
+ {
+ 	Touch touchZero = Input.GetTouch(0);
+ 	Touch touchOne - Input.GetTouch(1);
+
+	//delta는 delta시간 만큼 움직인 거리가 된다.
+	Vector2 touchZeroPrevPos = touchZero.position - touchZero.deltaPosition;
+	Vector2 touchOnePrevPos = touchOne.position - touchOne.deltaPosition;
+
+	//현재와 과거값의 움직임의 크기 구하기
+	float prevTouchDeltaMag = (touchZeroPrevPos-touchOnePrevPos).magnitude;
+	float touchDeltaMag = (touchZero.position - touchOne.position).magnitude;
+
+	//위 크기를 기반으로 화면 확대 축소를 진행한다.
+	float deltaMagnitudeDiff = prevTouchDeltaMag-touchDeltaMag;
+
+	//위에 구한 값을 기반으로 카메라 크기를 조정한다.
+	if (camera.isOrthoGraphic){
+	camera.orthographicSize += deltaMagnitudeDiff * orthoZoomSpeed;
+	//너무 작아지지는 않게 만든다.
+	camera.orthographicSize = Mathf.Max(camera.orthographicSize,0.1f);
+	}
+	else
+	{
+	camera.fieldOfView += deltaMagnitudeDiff * perspectiveZoomSpeed;
+	camera.fieldIfView = Mathf.Clamp(camera.fieldOfView,0.1f,179.9f);
+	}
+ }
+}
+}
+
+---------------
+
+ [ 월드 축소 ver2 ] - 월드 크기 자체를 바꾸는 함수로 변경
+if (Input.touchCount == 2)
+        {
+            Touch touchZero = Input.GetTouch(0);
+            Touch touchOne = Input.GetTouch(1);
+
+            //delta는 delta시간 만큼 움직인 거리가 된다.
+            Vector2 touchZeroPrevPos = touchZero.position - touchZero.deltaPosition;
+            Vector2 touchOnePrevPos = touchOne.position - touchOne.deltaPosition;
+
+            //현재와 과거값의 움직임의 크기 구하기
+            float prevTouchDeltaMag = (touchZeroPrevPos - touchOnePrevPos).magnitude;
+            float touchDeltaMag = (touchZero.position - touchOne.position).magnitude;
+
+            //위 크기를 기반으로 화면 확대 축소를 진행한다.
+            float deltaMagnitudeDiff = prevTouchDeltaMag - touchDeltaMag;
+
+
+
+            //위에 구한 값을 기반으로 전체 오브젝트 크기를 조정한다.
+            //imp = deltaMagnitudeDiff * zoomSpeed;
+            //transform.localScale += new Vector3(imp,imp,imp);
+
+            int changer = System.Convert.ToInt32(deltaMagnitudeDiff*10);
+
+            if (changer >= 0){
+
+                for (int i = 0; i < changer; i++)
+                {
+                    if (transform.localScale.x >= 0.5)
+                    {
+                        z_transform_minus();
+                        scale_transformation_minus();
+                    }
+                }
+
+            }
+            else if(changer <0){
+                changer = changer * (-1);
+                for(int i =0; i<changer; i++)
+                {
+                    if (transform.localScale.x <= 10)
+                    {
+                        z_transform_plus();
+                        scale_transformation_plus();
+                    }
+                }
+
+
+            }
+
+          
+
+            transform.position = new Vector3(0, -20, z_position);
+            transform.localScale = new Vector3(scale_portion, scale_portion, scale_portion);
+
+---------------
+
+ 월드 회전
+ 
+if (Input.touchCount == 1)
+        {
+            Touch dragger = Input.GetTouch(0);
+
+            //움직인 거리를 측정
+            if (dragger.phase == TouchPhase.Began)
+            {
+                touch_position = dragger.position - dragger.deltaPosition;
+            }
+            else if(dragger.phase == TouchPhase.Moved)
+            {
+                touchEnd_position = dragger.position - dragger.deltaPosition;
+                Result_x = (touchEnd_position- touch_position).x;
+
+                transform.Rotate(0, Result_x*rotation_speed, 0);
+
+            }
+            else if (dragger.phase == TouchPhase.Ended)
+            {
+
+            }
+           
+        }
+
+
+---------------
+
+ 월드 씬 변경 (원형)
+
+ Circular Faed In Out 
+
+---------------
+
+ 월드 씬 변경 (원형)

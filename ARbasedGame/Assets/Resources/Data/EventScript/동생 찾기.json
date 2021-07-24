@@ -1,0 +1,76 @@
+{
+    "first": [
+      {
+        "name": "갈색 곰",
+        "script": "……….",
+        "chooseNum": -1
+      },
+      {
+        "name": "갈색 곰",
+        "script": "혹시 나랑 닮은 곰 못 봤니?",
+        "chooseNum": -1
+      },
+      {
+        "name": "갈색 곰",
+        "script": "분명 근처에 있을텐데 보이지를 않네….",
+        "chooseNum": -1
+      },
+      {
+        "name": "갈색 곰",
+        "script": "혹시 동생을 찾아줄 수 있어?",
+        "chooseNum": 0
+      },
+      {
+        "name": "갈색 곰",
+        "script": "고마워, 기다릴게!",
+        "chooseNum": 10
+      },
+      {
+        "name": "갈색 곰",
+        "script": "앗… 바쁜가보구나.",
+        "chooseNum": 20
+      },
+      {
+        "name": "갈색 곰",
+        "script": "언제라도 마음이 바뀌면 다시 말을 걸어줘.",
+        "chooseNum": 20
+      }
+    ],
+    "second": [
+        {
+            "name": "갈색 곰",
+            "script": "동생을 찾아줄거야?",
+            "chooseNum": 0
+        },
+        {
+            "name": "갈색 곰",
+            "script": "고마워, 기다리고 있을게.",
+            "chooseNum": 10
+        },
+        {
+            "name": "갈색 곰",
+            "script": "언제라도 마음이 바뀌면 다시 말을 걸어줘.",
+            "chooseNum": 20
+        }
+    ],
+    "third":[
+      {
+        "name": "빈 칸",
+        "script": "",
+        "chooseNum": -1
+      }
+    ],
+    "fourth": [
+        {
+            "name": "하얀 곰",
+            "script": "형이 나를 찾고있다고?",
+            "chooseNum": -1
+        },
+        {
+            "name": "하얀 곰",
+            "script": "고마워…. 역시 색깔이 문제인가…….",
+            "chooseNum": -1
+        }
+    ]
+  }
+  

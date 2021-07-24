@@ -1,0 +1,26 @@
+{
+    "first": [
+        {
+          "name": "",
+          "script": "20xx년 x월 xx일",
+          "chooseNum": -1
+        },
+        {
+            "name": "",
+            "script": "나도 형처럼 특별한 색을 가지고싶어….",
+            "chooseNum": -1
+        },
+        {
+            "name": "",
+            "script": "(누군가의 일기가 적혀있다.)",
+            "chooseNum": -1
+        }
+    ],
+    "second": [
+        {
+          "name": "",
+          "script": "",
+          "chooseNum": -1
+        }
+    ]
+}

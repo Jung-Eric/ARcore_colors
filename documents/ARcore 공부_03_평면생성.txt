@@ -1,0 +1,27 @@
+** 평면 인식은 그대로 가져다가 사용하면 된다. 크게 변형되는 것은 없다.
+	다만 Detected Plane Visualizer과 같이 원하는 방식으로 평면을
+	표시한다.
+
+-----------------------------------------------------------------------------
+
+** prefab을 가져오고 List를 통해서 평면들의 List를 저장한다.
+
+public GameObject DetectedPlanePrefab;
+
+private List<DetectedPlane> m_NewPlanes = new List<DetectedPlane>();
+
+
+
+** Update를 통해서 Session 상태를 받아 표기 가능한 평면을 표기한다.
+ * for문을 통해서 Planes들을 표기해준다.
+
+Session.GetTrackables<DetectedPlane>(m_NewPlanes, TrackableQueryFilter.New);
+            for (int i = 0; i < m_NewPlanes.Count; i++)
+            {
+                // Instantiate a plane visualization prefab and set it to track the new plane. The
+                // transform is set to the origin with an identity rotation since the mesh for our
+                // prefab is updated in Unity World coordinates.
+                GameObject planeObject =
+                    Instantiate(DetectedPlanePrefab, Vector3.zero, Quaternion.identity, transform);
+                planeObject.GetComponent<DetectedPlaneVisualizer>().Initialize(m_NewPlanes[i]);
+            }

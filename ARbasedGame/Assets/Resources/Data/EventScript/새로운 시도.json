@@ -1,0 +1,76 @@
+{
+    "first": [
+      {
+        "name": "흰색 곰",
+        "script": "……….",
+        "chooseNum": -1
+      },
+      {
+        "name": "흰색 곰",
+        "script": "형은 멋진 색을 가지고 있어. 나와 다르게 말이지….",
+        "chooseNum": -1
+      },
+      {
+        "name": "흰색 곰",
+        "script": "나도 형처럼 색을 가지고 싶은데… 평범한 색은 싫어.",
+        "chooseNum": -1
+      },
+      {
+        "name": "흰색 곰",
+        "script": "평범하지 않은 새로운 색깔이 있을까? 넌 알고 있어?",
+        "chooseNum": 0
+      },
+      {
+        "name": "흰색 곰",
+        "script": "정말? 그럼 그 색을 구하면 나에게 와줘.",
+        "chooseNum": 10
+      },
+      {
+        "name": "흰색 곰",
+        "script": "역시 너도 모르는구나….",
+        "chooseNum": 20
+      },
+      {
+        "name": "흰색 곰",
+        "script": "언제라도 알게 되면 다시 말을 걸어줘.",
+        "chooseNum": 20
+      }
+    ],
+    "second": [
+        {
+            "name": "흰색 곰",
+            "script": "평범하지 않은 새로운 색깔이 있을까?",
+            "chooseNum": 0
+        },
+        {
+            "name": "흰색 곰",
+            "script": "정말? 그 색을 구하면 나에게 와줘.",
+            "chooseNum": 10
+        },
+        {
+            "name": "흰색 곰",
+            "script": "언제라도 알게 되면 다시 말을 걸어줘.",
+            "chooseNum": 20
+        }
+    ],
+    "third":[
+      {
+        "name": "빈 칸",
+        "script": "",
+        "chooseNum": -1
+      }
+    ],
+    "fourth": [
+        {
+            "name": "하얀 곰",
+            "script": "……이 색깔을 써보라구?",
+            "chooseNum": -1
+        },
+        {
+            "name": "하얀 곰",
+            "script": "초록색? …좋아! 사용해볼게.",
+            "chooseNum": -1
+        }
+    ]
+  }
+  
