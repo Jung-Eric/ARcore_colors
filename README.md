@@ -44,13 +44,15 @@ ARcore는 모션 추적, 환경 인식, 조명 추정과 같은 기능을 제공
 
 ## Object Physics
 
+ 캐릭터 컨트롤러, 캐릭터 이동, 좌표와 시점에 따른 camera work와 같은 부분을 개발했습니다.
+ 
 ![image](https://user-images.githubusercontent.com/56705742/126892217-d23d9c0e-6de1-4502-b0ab-002249951581.png)
 
 ![image](https://user-images.githubusercontent.com/56705742/126892220-2e4746ee-f154-4d13-b63c-5d421b6b0042.png)
 
 ![image](https://user-images.githubusercontent.com/56705742/126892223-bd6390e9-2de3-4661-affe-cf33eb6b0dd1.png)
 
- 캐릭터 컨트롤러, 캐릭터 이동, 좌표와 시점에 따른 camera work와 같은 부분을 개발했습니다.
+
  
  
  
