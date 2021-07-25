@@ -15,6 +15,7 @@ Unity Engine을 사용해 게임을 개발했고 ARcore Tool kit를 활용한 AR
 
 ## AR core
 ![image](https://user-images.githubusercontent.com/56705742/126890327-d92f3683-9359-4cf0-8c79-1f526110b962.png)
+
 ARcore는 구글에서 제공하는 AR 개발 tool입니다.
 ARcore는 모션 추적, 환경 인식, 조명 추정과 같은 기능을 제공합니다.
 모션 추적은 현실의 좌표를 기억해 이를 AR object와 현실의 좌표를 연동하는 기능을 수행합니다.
